@@ -1,2 +1,2 @@
 # GISUNC
-Repository of course assignments for - Introduction to Geographic Information (GEOG 370) - at the University of North Carolina at Chapel Hill.
+Repository of assignments for the undergraduate course, Introduction to Geographic Information (GEOG 370), offered at the University of North Carolina at Chapel Hill.
