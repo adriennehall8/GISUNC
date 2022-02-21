@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Leaflet Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+  <style type="text/css">
+
+    h4 {
+      font-family: 'Gill Sans';
+      font-weight: lighter;
+      font-size: x-large;
+      color: rgb(16,38,32);
+      position: relative;
+      text-align: left;
+    }
+
+    h5 {
+      font-family: 'Gill Sans';
+      font-weight: normal;
+      font-size: large;
+      color: rgb(16,38,32);
+      position: relative;
+      text-align: left;
+    }
+
+    body {
+       margin: 3;
+       padding: 3;
+    }
+    html, body, #map{
+       width: 100%;
+       height: 100%;
+    }
+
+  </style>
+</head>
+<body>
+  <h4>Susanville, Lassen County, California</h4>
+  <div id="map"></div>
+  <script>
+      var map = L.map('map').setView([40.426702513187706, -120.67350075600334], 14);
+
+      // create variables for tile layers and add tiles to map
+      var ESRI = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+      }).addTo(map);
+
+      var Photo = L.tileLayer('./Tiles/{z}/{x}/{y}.png', {
+        minZoom: 12,
+        maxZoom: 16,
+        tms: false,
+        attribution: 'USGS'
+      }).addTo(map);
+
+      // create a variable called "Tiles" that stores all the tile layers to be controlled by layer controls
+      var Tiles = {
+        "ESRI: World Imagery": ESRI,
+        "Susanville 1991 Aerial Imagery": Photo
+        }
+
+      // icons, popups, and markers
+
+      // first icon, pop-up, and marker
+      // var icon1 = L.icon({
+      //       iconUrl: 'https://www.flaticon.com/premium-icon/icons/svg/3086/3086003.svg',
+      //       iconSize: [50,50],
+      //       popupAnchor: [0,0]
+      //   });
+
+      var pop1 = "Susan River Trail is a 1.2 mile point to point trail that follows the Susan River <br/><img src='http://pics4.city-data.com/cpicc/cfiles15714.jpg'width='100px'/>";
+
+      var SusanRiver = L.marker([40.413413,-120.6528416], {
+        // icon: icon1,
+        pointToLayer: function (feature, latlng) {
+        return L.marker(latlng);}})
+      .bindPopup(pop1)
+      .addTo(map);
+
+      // second icon, pop-up, and marker
+      // var icon2 = L.icon({
+      //       iconUrl: 'https://www.flaticon.com/premium-icon/icons/svg/3433/3433432.svg',
+      //       iconSize: [50,50],
+      //       popupAnchor: [0,0]
+      //   });
+
+      var pop2 = "Lassen-Modoc Unit (LMU) of CAL Fire is one of many conservation fire camps throughout the state. These units use prison labor to fire wildfires and other fire-related concerns. This unit services several counties in the northeastern region of the state: Lassen, Modoc, Plumas, and portions of Shasta and Siskiyou counties. <br/><img src='https://media.abc10.com/assets/KXTV/images/0de29932-5975-4d7f-aaff-b7de9a349e0c/0de29932-5975-4d7f-aaff-b7de9a349e0c_1140x641.jpg'width='100px'/>";
+
+      var Fire = L.marker([40.423863,-120.6784568], {
+        // icon: icon2,
+        pointToLayer: function (feature, latlng) {
+        return L.marker(latlng);}})
+      .bindPopup(pop2)
+      .addTo(map);
+
+      // third
+      // var icon3 = L.icon({
+      //       iconUrl: 'https://www.flaticon.com/svg/vstatic/svg/3079/3079182.svg?token=exp=1614198677~hmac=ef339842cd515c29d6ed8bd89140743c',
+      //       iconSize: [50,50],
+      //       popupAnchor: [0,0]
+      //   });
+
+      var pop3 = "What used to be my great great grandmother's old house in Susanville. It was illegally demolished and cleared by the Fire Department. <br/><img src='https://geo0.ggpht.com/cbk?panoid=iMEe_R69MZwGmebshEeHKw&output=thumbnail&cb_client=search.gws-prod.gps&thumb=2&w=408&h=240&yaw=202.98352&pitch=0&thumbfov=100'width='100px'/>";
+
+      var House = L.marker([40.421554,-120.6566157], {
+        // icon: icon3,
+        pointToLayer: function (feature, latlng) {
+        return L.marker(latlng);}})
+      .bindPopup(pop3)
+      .addTo(map);
+
+      // create a variable called "Markers" that stores all the markers to be controlled in layer controls
+      var Markers = {
+        "Susan River Trail": SusanRiver,
+        "CAL-FIRE Lassen-Modoc Unit (LMU)": Fire,
+        "Family House": House
+      }
+
+      //layer controls
+      L.control.layers(Tiles, Markers).addTo(map);
+
+  </script>
+  <h5>Tile layer for Susanville 1991 aerial imagery attained from USGS Earth Explorer; georeferenced using Esri World Imagery tile layer in QGIS</h5>
+</body>
+</html>
