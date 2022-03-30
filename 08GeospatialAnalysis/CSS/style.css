@@ -1,0 +1,41 @@
+body {background-color: rgb(242,242,242)}
+        
+h1 {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: x-large;
+    color:rgb(16,38,32);
+    cursor: text;
+    position: relative;
+    text-align: left;
+}
+
+h2 {
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: larger;
+    color:rgb(16,38,32);
+    cursor: text;
+    position: relative;
+    text-align: left;
+}
+
+p {
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: medium;
+    color:rgb(16,38,32);
+    cursor: text;
+    position: relative;
+    text-align: left;
+}
+
+a {
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: medium;
+    color:rgb(16,38,32);
+    cursor: text;
+    position: relative;
+    text-align: left;
+}

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "HuntersvilleSpillLocation",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "lat": "35.414106", "lng": "-80.806185", "name": "14511 Huntersville-Concord Rd", "county": "Mecklenburg", "state": "NC" }, "geometry": { "type": "Point", "coordinates": [ -80.806185, 35.414105999999677 ] } }
+]
+}
